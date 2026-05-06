@@ -15,7 +15,7 @@
 
 ---
 
-![screenshot placeholder](https://placehold.co/1200x600/0d0f0e/2fb5be?text=GeoTracker+Preview)
+![screenshot placeholder](public/preview.png)
 
 ## Sobre
 
