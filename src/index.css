@@ -1,0 +1,198 @@
+/* =========================================================
+   GEOTRACKER — Design System
+   Art direction: NASA / geospatial data → dark, precise, technical
+   Palette: dark surfaces + teal accent (space-inspired)
+   Typography: General Sans (body) + Instrument Serif (brand)
+   Density: dense (dashboard)
+   ========================================================= */
+
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap');
+
+:root {
+  /* Type scale */
+  --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+  --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+  --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+  --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+
+  /* Spacing */
+  --space-1: 0.25rem; --space-2: 0.5rem;  --space-3: 0.75rem;
+  --space-4: 1rem;    --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem;    --space-10: 2.5rem; --space-12: 3rem;
+
+  /* Radius */
+  --radius-sm: 0.375rem; --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Fonts */
+  --font-body: 'General Sans', 'Inter', sans-serif;
+  --font-display: 'General Sans', sans-serif;
+}
+
+/* DARK MODE (default for this app) */
+:root, [data-theme="dark"] {
+  --color-bg:              #0d0f0e;
+  --color-surface:         #131615;
+  --color-surface-2:       #181c1a;
+  --color-surface-offset:  #1e2320;
+  --color-surface-dynamic: #262c29;
+  --color-divider:         #262c29;
+  --color-border:          #2e3530;
+  --color-text:            #d4d8d6;
+  --color-text-muted:      #7a8a82;
+  --color-text-faint:      #4a5550;
+  --color-text-inverse:    #0d0f0e;
+
+  --color-primary:         #2fb5be;
+  --color-primary-hover:   #48cad3;
+  --color-primary-active:  #1a8f97;
+  --color-primary-highlight: #1a2e30;
+
+  --color-success:         #5cba6a;
+  --color-success-highlight: #1a2e1e;
+  --color-warning:         #f4a43a;
+  --color-warning-highlight: #2e2010;
+  --color-error:           #f06060;
+  --color-error-highlight: #2e1414;
+  --color-orange:          #f07840;
+  --color-orange-highlight:#2e1a0c;
+  --color-purple:          #a87fdf;
+  --color-purple-highlight:#2a1e3a;
+  --color-blue:            #5590d4;
+  --color-blue-highlight:  #142038;
+  --color-gold:            #e0b840;
+  --color-gold-highlight:  #2a2008;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+}
+
+[data-theme="light"] {
+  --color-bg:              #f4f6f5;
+  --color-surface:         #f9faf9;
+  --color-surface-2:       #ffffff;
+  --color-surface-offset:  #edf0ee;
+  --color-surface-dynamic: #e4e8e5;
+  --color-divider:         #d8ddd9;
+  --color-border:          #cdd3ce;
+  --color-text:            #1a2020;
+  --color-text-muted:      #546060;
+  --color-text-faint:      #8a9e98;
+  --color-text-inverse:    #ffffff;
+
+  --color-primary:         #017880;
+  --color-primary-hover:   #015e65;
+  --color-primary-active:  #014448;
+  --color-primary-highlight: #cce8ea;
+
+  --color-success:         #2e7a38;
+  --color-success-highlight: #d0ead4;
+  --color-warning:         #b86010;
+  --color-warning-highlight: #f5dfc8;
+  --color-error:           #c02020;
+  --color-error-highlight: #f5d0d0;
+  --color-orange:          #c04818;
+  --color-orange-highlight:#f5dace;
+  --color-purple:          #6a3cb8;
+  --color-purple-highlight:#e4d8f8;
+  --color-blue:            #2460b0;
+  --color-blue-highlight:  #ccddf8;
+  --color-gold:            #a07808;
+  --color-gold-highlight:  #f8ead0;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+img, svg { display: block; max-width: 100%; }
+button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+input, select { font: inherit; color: inherit; }
+ul, ol { list-style: none; }
+
+a, button, [role="button"], input, select {
+  transition: color var(--transition), background var(--transition),
+              border-color var(--transition), box-shadow var(--transition),
+              opacity var(--transition);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* Leaflet overrides */
+.leaflet-container { background: #0a0d0c !important; font-family: var(--font-body) !important; }
+.leaflet-tile-pane { filter: saturate(0.7) brightness(0.85); }
+[data-theme="light"] .leaflet-tile-pane { filter: none; }
+.leaflet-popup-content-wrapper {
+  background: var(--color-surface-2) !important;
+  color: var(--color-text) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+.leaflet-popup-tip { background: var(--color-surface-2) !important; }
+.leaflet-popup-content { margin: var(--space-3) var(--space-4) !important; font-size: var(--text-sm) !important; }
+.leaflet-control-zoom a {
+  background: var(--color-surface-2) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-border) !important;
+}
+.leaflet-control-zoom a:hover { background: var(--color-surface-offset) !important; }
+.leaflet-control-attribution {
+  background: oklch(from var(--color-bg) l c h / 0.8) !important;
+  color: var(--color-text-faint) !important;
+  font-size: 10px !important;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--color-surface-offset) 25%,
+    var(--color-surface-dynamic) 50%,
+    var(--color-surface-offset) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.25s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
