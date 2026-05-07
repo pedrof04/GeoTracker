@@ -1,4 +1,4 @@
-import { Filter } from 'lucide-react';
+import { Filter, X } from 'lucide-react';
 import { getCategoryConfig } from '../lib/categoryConfig.js';
 import styles from './Sidebar.module.css';
 
@@ -9,7 +9,7 @@ const STATUS_OPTIONS = [
   { value: 'all',    label: 'Todos' },
 ];
 
-export function Sidebar({ categories, filters, onFiltersChange, events }) {
+export function Sidebar({ categories, filters, onFiltersChange, events, open = true, onClose }) {
   const countByCategory = events.reduce((acc, e) => {
     const catId = e.properties?.categories?.[0]?.id;
     if (catId) acc[catId] = (acc[catId] || 0) + 1;
@@ -17,7 +17,17 @@ export function Sidebar({ categories, filters, onFiltersChange, events }) {
   }, {});
 
   return (
-    <aside className={styles.sidebar}>
+    <aside
+      id="filters-sidebar"
+      className={styles.sidebar}
+      data-open={open}
+      aria-hidden={!open}
+    >
+      <div className={styles.mobileHeader}>
+        <button className={styles.closeBtn} onClick={() => { console.log('sidebar close clicked'); onClose && onClose(); }} aria-label="Fechar menu">
+          <X size={16} />
+        </button>
+      </div>
       <div className={styles.section}>
         <h3 className={styles.sectionTitle}>
           <Filter size={12} /> Filtros

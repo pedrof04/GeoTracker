@@ -7,7 +7,8 @@
   background: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
   flex-shrink: 0;
-  z-index: 100;
+  position: relative;
+  z-index: 1300;
 }
 
 .brand {
@@ -33,11 +34,17 @@
   line-height: 1.2;
 }
 
+.right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
 .stats {
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  margin-left: auto;
 }
 
 .stat {
@@ -87,6 +94,24 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { animation: spin 0.8s linear infinite; }
 
-@media (max-width: 600px) {
+.mobileStats { display: none; }
+
+@media (max-width: 768px) {
   .stats { display: none; }
+  .mobileStats { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text-muted); font-size: var(--text-xs); }
+  .statValueMobile { font-weight: 600; color: var(--color-text); font-variant-numeric: tabular-nums; }
+  .statLabelMobile { opacity: 0.8; }
 }
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  margin-left: 6px;
+}
+.hamburger:hover { background: var(--color-surface-offset); color: var(--color-text); }

@@ -11,6 +11,7 @@ const DEFAULT_FILTERS = { status: 'open', days: 30, category: '' };
 
 export default function App() {
   const { theme, toggle } = useTheme();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [selectedId, setSelectedId] = useState(null);
   const { events, categories, loading, error, refetch, lastUpdated } = useEvents(filters);
@@ -26,14 +27,19 @@ export default function App() {
         loading={loading}
         lastUpdated={lastUpdated}
         eventCount={events.length}
+        onToggleSidebar={() => setSidebarOpen(s => !s)}
+        sidebarOpen={sidebarOpen}
       />
       <div className={styles.body}>
         <Sidebar
           categories={categories}
           filters={filters}
           onFiltersChange={f => { setFilters(f); setSelectedId(null); }}
+          open={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
           events={events}
         />
+        {sidebarOpen && <div className={styles.overlay} onClick={() => setSidebarOpen(false)} />}
         <main className={styles.main}>
           {error && (
             <div className={styles.errorBanner}>⚠️ {error}</div>

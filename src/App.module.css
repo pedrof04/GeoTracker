@@ -45,3 +45,27 @@
   font-size: var(--text-xs);
   z-index: 500;
 }
+
+/* overlay used when sidebar is open on mobile */
+.overlay {
+  display: none;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.32);
+    z-index: 1100;
+    animation: overlayIn 180ms ease;
+  }
+}
