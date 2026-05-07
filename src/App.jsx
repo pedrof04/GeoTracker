@@ -47,7 +47,12 @@ export default function App() {
           {loading && (
             <div className={styles.loadingPill}>A carregar…</div>
           )}
-          <MapView events={events} selectedId={selectedId} onSelectEvent={handleSelect} />
+          <MapView
+            events={events}
+            selectedId={selectedId}
+            onSelectEvent={handleSelect}
+            theme={theme}
+          />
         </main>
         {selectedId && (
           <EventDetail eventId={selectedId} onClose={() => setSelectedId(null)} />

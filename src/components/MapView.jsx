@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Polygon, Popup, useMap } from 'react-leaflet';
-import { getCategoryColor, getCategoryConfig } from '../lib/categoryConfig.js';
+import { getCategoryConfig } from '../lib/categoryConfig.js';
 
 function FlyToSelected({ selectedId, events }) {
   const map = useMap();
@@ -20,7 +20,13 @@ function FlyToSelected({ selectedId, events }) {
   return null;
 }
 
-export function MapView({ events, selectedId, onSelectEvent }) {
+export function MapView({ events, selectedId, onSelectEvent, theme }) {
+  const tileUrl = useMemo(() => (
+    theme === 'light'
+      ? 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
+      : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+  ), [theme]);
+
   return (
     <MapContainer
       center={[20, 0]}
@@ -31,7 +37,8 @@ export function MapView({ events, selectedId, onSelectEvent }) {
       worldCopyJump
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        key={theme}
+        url={tileUrl}
         attribution='&copy; <a href="https://carto.com/" target="_blank">CARTO</a> &copy; <a href="https://openstreetmap.org" target="_blank">OSM</a>'
         subdomains="abcd"
         maxZoom={20}
